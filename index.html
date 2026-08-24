@@ -31,6 +31,7 @@
             color: #fff;
             overflow: hidden;
             height: 100vh;
+            width: 100vw;
         }
 
         h1, h2, h3, .cinzel { font-family: 'Cinzel', serif; }
@@ -61,38 +62,46 @@
         nav {
             position: fixed;
             top: 0; width: 100%;
-            padding: 20px 50px;
+            padding: 15px 5vw;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 5, 5, 0.5);
+            background: rgba(5, 5, 5, 0.6);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--bordure-verre);
-            z-index: 100;
+            z-index: 1000;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             cursor: pointer;
         }
 
         .logo-container img {
-            height: 60px;
+            height: clamp(40px, 5vw, 60px);
             filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
             animation: flotter 4s ease-in-out infinite;
         }
 
         .logo-container h1 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             letter-spacing: 3px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .nav-liens {
             display: flex;
-            gap: 40px;
+            gap: clamp(15px, 3vw, 40px);
             list-style: none;
+            align-items: center;
         }
 
         .nav-liens li { cursor: pointer; }
@@ -101,7 +110,7 @@
             color: #ccc;
             text-decoration: none;
             font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: var(--transition-rapide);
@@ -126,14 +135,15 @@
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid var(--or-pur);
             color: var(--or-pur);
-            padding: 8px 15px;
+            padding: 8px 12px;
             border-radius: 4px;
             font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: var(--transition-rapide);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         
         .btn-lang:hover {
@@ -142,21 +152,29 @@
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
         }
 
+        .hamburger {
+            display: none;
+            color: var(--or-pur);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
         main {
             position: relative;
             width: 100%;
             height: 100vh;
-            padding-top: 100px;
+            padding-top: 80px;
         }
 
         .page {
             position: absolute;
-            top: 100px; left: 0;
-            width: 100%; height: calc(100vh - 100px);
-            padding: 40px 10%;
+            top: 80px; left: 0;
+            width: 100%; height: calc(100vh - 80px);
+            padding: clamp(20px, 5vh, 40px) 5vw;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(50px) scale(0.95);
+            transform: translateY(30px) scale(0.98);
             transition: var(--transition-lente);
             overflow-y: auto;
             display: flex;
@@ -170,8 +188,8 @@
             transform: translateY(0) scale(1);
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.5); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: var(--or-sombre); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--or-pur); }
 
@@ -181,21 +199,23 @@
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid var(--bordure-verre);
             border-radius: 15px;
-            padding: 50px;
+            padding: clamp(25px, 5vw, 50px);
             text-align: center;
             max-width: 1000px;
+            width: 100%;
             box-shadow: 0 25px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(212, 175, 55, 0.05);
         }
 
         .titre-page {
-            font-size: 3rem;
-            margin-bottom: 30px;
-            letter-spacing: 4px;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: clamp(15px, 3vh, 30px);
+            letter-spacing: clamp(2px, 0.5vw, 4px);
+            line-height: 1.2;
         }
 
         .texte-intro {
-            font-size: 1.15rem;
-            line-height: 1.9;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            line-height: 1.8;
             color: #ddd;
             margin-bottom: 25px;
             text-align: justify;
@@ -204,21 +224,26 @@
         .texte-intro strong { color: var(--or-pur); }
 
         .btn-guerre {
-            display: inline-block;
-            padding: 18px 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: clamp(12px, 2vw, 18px) clamp(20px, 4vw, 50px);
             background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
             color: var(--or-pur);
             border: 2px solid var(--or-pur);
             font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2vw, 1.3rem);
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-decoration: none;
             position: relative;
             overflow: hidden;
             transition: 0.5s;
             cursor: pointer;
+            text-align: center;
+            width: fit-content;
         }
 
         .btn-guerre::before {
@@ -234,13 +259,13 @@
         .btn-guerre:hover {
             background: var(--or-pur);
             color: var(--fond-noir);
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
         }
 
         .missions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(20px, 4vw, 40px);
             width: 100%;
             max-width: 1200px;
             perspective: 1000px;
@@ -249,9 +274,10 @@
         .carte-mission {
             background: var(--verre);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--bordure-verre);
             border-radius: 10px;
-            padding: 40px 30px;
+            padding: clamp(25px, 4vw, 40px) 20px;
             text-align: center;
             transform-style: preserve-3d;
             transition: transform 0.1s ease;
@@ -259,7 +285,7 @@
         }
 
         .carte-mission i {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             color: var(--or-pur);
             margin-bottom: 20px;
             transform: translateZ(50px);
@@ -267,7 +293,7 @@
         }
 
         .carte-mission h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
             margin-bottom: 15px;
             transform: translateZ(30px);
         }
@@ -276,20 +302,53 @@
             color: #bbb;
             transform: translateZ(20px);
             line-height: 1.6;
-            font-size: 1.05rem;
+            font-size: clamp(0.95rem, 1.5vw, 1.05rem);
         }
 
+        /* ANIMATIONS */
         @keyframes flotter {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
 
         @media (max-width: 900px) {
-            nav { padding: 15px 20px; flex-direction: column; gap: 15px; }
-            .nav-liens { gap: 20px; font-size: 0.9rem; flex-wrap: wrap; justify-content: center; }
-            .titre-page { font-size: 2.2rem; }
-            .glass-panel { padding: 30px 20px; }
+            .hamburger { display: block; }
+            
+            /* Menu latéral mobile */
+            .nav-liens {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: rgba(5, 5, 5, 0.95);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+                border-left: 1px solid var(--bordure-verre);
+                z-index: 1000;
+                gap: 30px;
+            }
+
+            .nav-liens.menu-ouvert {
+                right: 0;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+            }
+
+            .nav-liens a { font-size: 1.3rem; }
+            
+            .btn-guerre { width: 100%; max-width: 300px; }
+            
             .texte-intro { text-align: left; }
+        }
+
+        @media (max-width: 380px) {
+            .missions-grid { grid-template-columns: 1fr; }
+            .btn-lang { padding: 6px 10px; font-size: 0.8rem; }
+            nav { padding: 10px 4vw; }
         }
     </style>
 </head>
@@ -304,89 +363,117 @@
             <h1 class="texte-or">ACR</h1>
         </div>
         
-        <ul class="nav-liens">
+        <div class="nav-actions">
+            <button class="btn-lang" id="btn-lang" onclick="toggleLangue()">
+                <i class="fas fa-globe"></i> <span id="lang-text">EN</span>
+            </button>
+            
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+
+        <ul class="nav-liens" id="nav-liens">
             <li><a href="#" class="nav-btn actif" data-cible="accueil" data-i18n="nav_accueil">Accueil</a></li>
             <li><a href="#" class="nav-btn" data-cible="ordre" data-i18n="nav_ordre">L'Ordre</a></li>
             <li><a href="#" class="nav-btn" data-cible="missions" data-i18n="nav_missions">Missions</a></li>
             <li><a href="#" class="nav-btn" data-cible="bastion" data-i18n="nav_bastion">Bastion</a></li>
         </ul>
-
-        <button class="btn-lang" id="btn-lang" onclick="toggleLangue()">
-            <i class="fas fa-globe"></i> <span id="lang-text">EN</span>
-        </button>
     </nav>
 
     <main>
+        
         <section id="accueil" class="page active">
-            <div style="margin-top: 10vh; text-align: center;">
-                <img src="./images/logo-guilde.png" alt="Blason" style="height: 220px; animation: flotter 5s ease-in-out infinite; filter: drop-shadow(0 0 40px rgba(212,175,55,0.8)); margin-bottom: 20px;">
-                <h1 class="titre-page texte-or" style="font-size: 4rem;">Ave Christus Rex</h1>
-                <h2 class="cinzel" style="font-size: 2rem; color: #fff; letter-spacing: 5px; margin-bottom: 50px;" data-i18n="hero_soustitre">L'Appel de la Croisade Résonne !</h2>
-                <a href="#" class="btn-guerre" onclick="naviguer('ordre')" data-i18n="btn_decouvrir">Découvrir notre histoire</a>
+            <div style="margin-top: 5vh; text-align: center; width: 100%;">
+                <img src="./images/logo-guilde.png" alt="Blason" style="height: clamp(120px, 20vw, 220px); animation: flotter 5s ease-in-out infinite; filter: drop-shadow(0 0 40px rgba(212,175,55,0.8)); margin-bottom: 20px;">
+                <h1 class="titre-page texte-or">Ave Christus Rex</h1>
+                <h2 class="cinzel" style="font-size: clamp(1.2rem, 3vw, 2rem); color: #fff; letter-spacing: clamp(2px, 1vw, 5px); margin-bottom: clamp(30px, 5vh, 50px);" data-i18n="hero_soustitre">L'Appel de la Croisade Résonne !</h2>
+                <a href="#" class="btn-guerre" onclick="naviguer('ordre')" data-i18n="btn_decouvrir">Découvrir l'histoire</a>
             </div>
         </section>
 
         <section id="ordre" class="page">
-            <div class="glass-panel" style="margin-top: 5vh;">
-                <h2 class="titre-page texte-or" data-i18n="ordre_titre">Oyez, Braves Héros de Dracania !</h2>
+            <div class="glass-panel" style="margin-top: 2vh;">
+                <h2 class="titre-page texte-or" data-i18n="ordre_titre">Oyez, Braves Héros !</h2>
                 <p class="texte-intro" data-i18n="ordre_p1">
-                    L'heure n'est plus au repos dans les tavernes de Kingshill. L'ombre s'étend à nouveau sur nos terres, de la rude Teganwall aux contrées glacées de Myrdosch. Les monstres de l'Altéromonde menacent de tout engloutir dans les ténèbres. Face à ce péril grandissant, l'ordre <strong>Ave Christus Rex</strong> sonne le rassemblement de la grande croisade pour purger ce monde de sa corruption !
+                    L'heure n'est plus au repos dans les tavernes de Kingshill. L'ombre s'étend à nouveau sur nos terres, de la rude Teganwall aux contrées glacées de Myrdosch. Les monstres de l'Altéromonde menacent de tout engloutir dans les ténèbres. Face à ce péril grandissant, l'ordre <strong>Ave Christus Rex</strong> sonne le rassemblement de la grande croisade pour purger ce monde !
                 </p>
                 <p class="texte-intro" data-i18n="ordre_p2">
-                    Forgée dans le feu des batailles et l'acier de nos lames, notre confrérie est bien plus qu'une simple alliance éphémère. Elle est militaire et spirituelle, profondément bâtie sur les piliers de l'honneur, de la loyauté indéfectible et de la soif inaltérable de vaincre. Nous ne cherchons pas de simples joueurs de passage. Nous cherchons des vétérans et des recrues au cœur vaillant, de véritables <strong>frères et sœurs d'armes</strong>, prêts à croiser le fer à nos côtés et à graver leur nom dans l'histoire.
+                    Forgée dans le feu des batailles, notre confrérie est bien plus qu'une simple alliance. Elle est militaire et spirituelle, bâtie sur les piliers de l'honneur, de la loyauté et de la soif inaltérable de vaincre. Nous cherchons de véritables <strong>frères et sœurs d'armes</strong>, prêts à croiser le fer à nos côtés et à graver leur nom dans l'histoire.
                 </p>
-                <i class="fas fa-swords texte-or" style="font-size: 2.5rem; margin-top: 20px;"></i>
+                <i class="fas fa-swords texte-or" style="font-size: clamp(2rem, 4vw, 2.5rem); margin-top: 10px;"></i>
             </div>
         </section>
 
         <section id="missions" class="page">
-            <h2 class="titre-page texte-or" data-i18n="missions_titre" style="margin-top: 2vh;">Notre Doctrine de Bataille</h2>
+            <h2 class="titre-page texte-or" data-i18n="missions_titre" style="text-align: center;">Notre Doctrine</h2>
             
             <div class="missions-grid">
                 <div class="carte-mission tilt-card">
                     <i class="fas fa-skull-crossbones"></i>
-                    <h3 class="texte-or" data-i18n="mission1_titre">Purge des Ténèbres (PvE)</h3>
-                    <p data-i18n="mission1_desc">Du farm intensif des donjons les plus sanglants aux raids impitoyables sur les boss mondiaux les plus redoutables, notre but absolu est de dominer le contenu PvE du jeu. La victoire par la force brute et la stratégie.</p>
+                    <h3 class="texte-or" data-i18n="mission1_titre">Purge des Ténèbres</h3>
+                    <p data-i18n="mission1_desc">Du farm intensif des donjons aux raids impitoyables sur les boss mondiaux, notre but absolu est de dominer le PvE. La victoire par la force brute et la stratégie.</p>
                 </div>
                 
                 <div class="carte-mission tilt-card">
                     <i class="fas fa-crown"></i>
                     <h3 class="texte-or" data-i18n="mission2_titre">Maîtrise des Événements</h3>
-                    <p data-i18n="mission2_desc">Les événements de Dracania sont notre terrain de chasse. Nous nous regroupons méthodiquement pour rafler les meilleures récompenses ensemble. Dans nos rangs, l'entraide prime : nous ne laissons jamais personne derrière.</p>
+                    <p data-i18n="mission2_desc">Les événements de Dracania sont notre terrain de chasse. Nous nous regroupons méthodiquement pour rafler les meilleures récompenses. Nous ne laissons personne derrière.</p>
                 </div>
                 
                 <div class="carte-mission tilt-card">
                     <i class="fas fa-hammer"></i>
                     <h3 class="texte-or" data-i18n="mission3_titre">Ascension Constante</h3>
-                    <p data-i18n="mission3_desc">La stagnation est notre ennemie. L'optimisation minutieuse de l'équipement, la science des gemmes, et le partage quotidien de connaissances tactiques sont au cœur de la doctrine de notre ordre.</p>
+                    <p data-i18n="mission3_desc">L'optimisation minutieuse de l'équipement, la science des gemmes, et le partage quotidien de connaissances tactiques sont au cœur de la doctrine de notre ordre.</p>
                 </div>
             </div>
         </section>
 
         <section id="bastion" class="page">
-            <div class="glass-panel" style="margin-top: 2vh;">
-                <h2 class="titre-page texte-or" data-i18n="bastion_titre">Le Bastion : Forteresse Numérique</h2>
+            <div class="glass-panel">
+                <h2 class="titre-page texte-or" data-i18n="bastion_titre">Forteresse Numérique</h2>
                 <p class="texte-intro" style="text-align: center;" data-i18n="bastion_desc">
-                    Au-delà des frontières du jeu, nous avons érigé une forteresse impénétrable de convivialité. En rejoignant nos quartiers sur Discord, vous découvrirez une communauté vivante et un <strong>système de progression interne unique et immersif</strong> !<br><br>Prouvez votre valeur dans nos discussions, participez aux batailles vocales et gravissez les échelons prestigieux de la guilde : passez du rang de simple <strong>Écuyer</strong>, faites vos preuves en tant que <strong>Templier</strong>, jusqu'à atteindre l'admiration de tous sous le titre suprême de <strong>Champion Mythique</strong>.
+                    En rejoignant nos quartiers sur Discord, vous découvrirez une communauté vivante et un <strong>système de progression unique</strong> !<br><br>Prouvez votre valeur dans nos rangs : passez du rang de simple <strong>Écuyer</strong>, faites vos preuves en tant que <strong>Templier</strong>, jusqu'à atteindre le titre suprême de <strong>Champion Mythique</strong>.
                 </p>
                 
-                <div style="margin: 40px 0; border-top: 1px solid var(--bordure-verre); border-bottom: 1px solid var(--bordure-verre); padding: 30px 0;">
-                    <h3 class="texte-or cinzel" style="font-size: 1.8rem; margin-bottom: 15px;" data-i18n="rejoindre_titre">Comment Prêter Serment ?</h3>
-                    <p style="color: #ccc; margin-bottom: 25px; font-size: 1.1rem;" data-i18n="rejoindre_desc">Prenez votre arme, revêtez votre plus belle armure, et murmurez au Grand Maître en jeu ou franchissez directement les lourdes portes de notre forteresse :</p>
+                <div style="margin: 30px 0; border-top: 1px solid var(--bordure-verre); border-bottom: 1px solid var(--bordure-verre); padding: 25px 0;">
+                    <h3 class="texte-or cinzel" style="font-size: clamp(1.2rem, 3vw, 1.8rem); margin-bottom: 15px;" data-i18n="rejoindre_titre">Comment Prêter Serment ?</h3>
+                    <p style="color: #ccc; margin-bottom: 25px; font-size: clamp(0.9rem, 2vw, 1.1rem);" data-i18n="rejoindre_desc">Prenez votre arme, revêtez votre armure, et franchissez les portes de notre forteresse :</p>
                     
-                    <a href="https://discord.gg/JDG9WStHJ8" target="_blank" class="btn-guerre" style="padding: 15px 30px; font-size: 1.1rem;">
-                        <i class="fab fa-discord"></i> <span data-i18n="btn_discord">Franchir les Portes (Discord)</span>
+                    <a href="https://discord.gg/JDG9WStHJ8" target="_blank" class="btn-guerre">
+                        <i class="fab fa-discord"></i> <span data-i18n="btn_discord">Rejoindre Discord</span>
                     </a>
                 </div>
                 
-                <p style="font-style: italic; color: var(--or-clair); font-size: 1.2rem;" class="cinzel" data-i18n="bastion_fin">En avant, croisés ! Que la fureur de nos lames résonne dans tout Dracania !</p>
+                <p style="font-style: italic; color: var(--or-clair); font-size: clamp(0.9rem, 2vw, 1.2rem);" class="cinzel" data-i18n="bastion_fin">En avant ! Que la fureur de nos lames résonne dans tout Dracania !</p>
             </div>
         </section>
 
     </main>
 
     <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLiens = document.getElementById('nav-liens');
+        const iconMenu = hamburger.querySelector('i');
+
+        function toggleMenu() {
+            navLiens.classList.toggle('menu-ouvert');
+            if (navLiens.classList.contains('menu-ouvert')) {
+                iconMenu.classList.remove('fa-bars');
+                iconMenu.classList.add('fa-times');
+            } else {
+                iconMenu.classList.remove('fa-times');
+                iconMenu.classList.add('fa-bars');
+            }
+        }
+
         function naviguer(cibleId) {
+            if (window.innerWidth <= 900) {
+                navLiens.classList.remove('menu-ouvert');
+                iconMenu.classList.remove('fa-times');
+                iconMenu.classList.add('fa-bars');
+            }
+
             document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('actif'));
             
@@ -403,31 +490,34 @@
             });
         });
 
-        const cartes = document.querySelectorAll('.tilt-card');
-        cartes.forEach(carte => {
-            carte.addEventListener('mousemove', e => {
-                const rect = carte.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+        if (window.innerWidth > 900) {
+            const cartes = document.querySelectorAll('.tilt-card');
+            cartes.forEach(carte => {
+                carte.addEventListener('mousemove', e => {
+                    const rect = carte.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -10; 
+                    const rotateY = ((x - centerX) / centerX) * 10;
+                    
+                    carte.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
                 
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -10; 
-                const rotateY = ((x - centerX) / centerX) * 10;
-                
-                carte.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                carte.addEventListener('mouseleave', () => {
+                    carte.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                });
             });
-            
-            carte.addEventListener('mouseleave', () => {
-                carte.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            });
-        });
+        }
 
+        const nbParticules = window.innerWidth > 900 ? 70 : 30;
         tsParticles.load("tsparticles", {
             fpsLimit: 60,
             particles: {
-                number: { value: 70, density: { enable: true, value_area: 800 } },
+                number: { value: nbParticules, density: { enable: true, value_area: 800 } },
                 color: { value: ["#d4af37", "#ff4500", "#ff8c00"] },
                 shape: { type: "circle" },
                 opacity: { value: 0.8, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
@@ -440,10 +530,10 @@
             interactivity: {
                 detect_on: "canvas",
                 events: {
-                    onhover: { enable: true, mode: "repulse" },
+                    onhover: { enable: window.innerWidth > 900, mode: "repulse" },
                     resize: true
                 },
-                modes: { repulse: { distance: 120, duration: 0.4 } }
+                modes: { repulse: { distance: 100, duration: 0.4 } }
             },
             retina_detect: true
         });
@@ -453,43 +543,43 @@
         const traductions = {
             "FR": {
                 "nav_accueil": "Accueil", "nav_ordre": "L'Ordre", "nav_missions": "Missions", "nav_bastion": "Bastion",
-                "hero_soustitre": "L'Appel de la Croisade Résonne !", "btn_decouvrir": "Découvrir notre histoire",
-                "ordre_titre": "Oyez, Braves Héros de Dracania !",
-                "ordre_p1": "L'heure n'est plus au repos dans les tavernes de Kingshill. L'ombre s'étend à nouveau sur nos terres, de la rude Teganwall aux contrées glacées de Myrdosch. Les monstres de l'Altéromonde menacent de tout engloutir dans les ténèbres. Face à ce péril grandissant, l'ordre <strong>Ave Christus Rex</strong> sonne le rassemblement de la grande croisade pour purger ce monde de sa corruption !",
-                "ordre_p2": "Forgée dans le feu des batailles et l'acier de nos lames, notre confrérie est bien plus qu'une simple alliance éphémère. Elle est militaire et spirituelle, profondément bâtie sur les piliers de l'honneur, de la loyauté indéfectible et de la soif inaltérable de vaincre. Nous ne cherchons pas de simples joueurs de passage. Nous cherchons des vétérans et des recrues au cœur vaillant, de véritables <strong>frères et sœurs d'armes</strong>, prêts à croiser le fer à nos côtés et à graver leur nom dans l'histoire.",
-                "missions_titre": "Notre Doctrine de Bataille",
-                "mission1_titre": "Purge des Ténèbres (PvE)",
-                "mission1_desc": "Du farm intensif des donjons les plus sanglants aux raids impitoyables sur les boss mondiaux les plus redoutables, notre but absolu est de dominer le contenu PvE du jeu. La victoire par la force brute et la stratégie.",
+                "hero_soustitre": "L'Appel de la Croisade Résonne !", "btn_decouvrir": "Découvrir l'histoire",
+                "ordre_titre": "Oyez, Braves Héros !",
+                "ordre_p1": "L'heure n'est plus au repos dans les tavernes de Kingshill. L'ombre s'étend à nouveau sur nos terres, de la rude Teganwall aux contrées glacées de Myrdosch. Les monstres de l'Altéromonde menacent de tout engloutir dans les ténèbres. Face à ce péril grandissant, l'ordre <strong>Ave Christus Rex</strong> sonne le rassemblement de la grande croisade pour purger ce monde !",
+                "ordre_p2": "Forgée dans le feu des batailles, notre confrérie est bien plus qu'une simple alliance. Elle est militaire et spirituelle, bâtie sur les piliers de l'honneur, de la loyauté et de la soif inaltérable de vaincre. Nous cherchons de véritables <strong>frères et sœurs d'armes</strong>, prêts à croiser le fer à nos côtés et à graver leur nom dans l'histoire.",
+                "missions_titre": "Notre Doctrine",
+                "mission1_titre": "Purge des Ténèbres",
+                "mission1_desc": "Du farm intensif des donjons aux raids impitoyables sur les boss mondiaux, notre but absolu est de dominer le PvE. La victoire par la force brute et la stratégie.",
                 "mission2_titre": "Maîtrise des Événements",
-                "mission2_desc": "Les événements de Dracania sont notre terrain de chasse. Nous nous regroupons méthodiquement pour rafler les meilleures récompenses ensemble. Dans nos rangs, l'entraide prime : nous ne laissons jamais personne derrière.",
+                "mission2_desc": "Les événements de Dracania sont notre terrain de chasse. Nous nous regroupons méthodiquement pour rafler les meilleures récompenses. Nous ne laissons personne derrière.",
                 "mission3_titre": "Ascension Constante",
-                "mission3_desc": "La stagnation est notre ennemie. L'optimisation minutieuse de l'équipement, la science des gemmes, et le partage quotidien de connaissances tactiques sont au cœur de la doctrine de notre ordre.",
-                "bastion_titre": "Le Bastion : Forteresse Numérique",
-                "bastion_desc": "Au-delà des frontières du jeu, nous avons érigé une forteresse impénétrable de convivialité. En rejoignant nos quartiers sur Discord, vous découvrirez une communauté vivante et un <strong>système de progression interne unique et immersif</strong> !<br><br>Prouvez votre valeur dans nos discussions, participez aux batailles vocales et gravissez les échelons prestigieux de la guilde : passez du rang de simple <strong>Écuyer</strong>, faites vos preuves en tant que <strong>Templier</strong>, jusqu'à atteindre l'admiration de tous sous le titre suprême de <strong>Champion Mythique</strong>.",
+                "mission3_desc": "L'optimisation minutieuse de l'équipement, la science des gemmes, et le partage quotidien de connaissances tactiques sont au cœur de la doctrine de notre ordre.",
+                "bastion_titre": "Forteresse Numérique",
+                "bastion_desc": "En rejoignant nos quartiers sur Discord, vous découvrirez une communauté vivante et un <strong>système de progression unique</strong> !<br><br>Prouvez votre valeur dans nos rangs : passez du rang de simple <strong>Écuyer</strong>, faites vos preuves en tant que <strong>Templier</strong>, jusqu'à atteindre le titre suprême de <strong>Champion Mythique</strong>.",
                 "rejoindre_titre": "Comment Prêter Serment ?",
-                "rejoindre_desc": "Prenez votre arme, revêtez votre plus belle armure, et murmurez au Grand Maître en jeu ou franchissez directement les lourdes portes de notre forteresse :",
-                "btn_discord": "Franchir les Portes (Discord)",
-                "bastion_fin": "En avant, croisés ! Que la fureur de nos lames résonne dans tout Dracania !"
+                "rejoindre_desc": "Prenez votre arme, revêtez votre armure, et franchissez les portes de notre forteresse :",
+                "btn_discord": "Rejoindre Discord",
+                "bastion_fin": "En avant ! Que la fureur de nos lames résonne dans tout Dracania !"
             },
             "EN": {
                 "nav_accueil": "Home", "nav_ordre": "The Order", "nav_missions": "Missions", "nav_bastion": "Stronghold",
                 "hero_soustitre": "The Call of the Crusade Echoes!", "btn_decouvrir": "Discover our history",
-                "ordre_titre": "Hear ye, Brave Heroes of Dracania!",
-                "ordre_p1": "The time for resting in the taverns of Kingshill is over. The shadow spreads across our lands once more, from the rugged Teganwall to the frozen realms of Myrdosch. The monsters of the Otherworld threaten to consume everything in darkness. Facing this growing peril, the order <strong>Ave Christus Rex</strong> sounds the gathering for the great crusade to purge this world of its corruption!",
-                "ordre_p2": "Forged in the fire of battles and the steel of our blades, our brotherhood is much more than a mere fleeting alliance. It is military and spiritual, deeply built upon the pillars of honor, unwavering loyalty, and the unquenchable thirst for victory. We do not seek passing players. We seek veterans and valiant-hearted recruits, true <strong>brothers and sisters in arms</strong>, ready to cross swords by our side and carve their names into history.",
-                "missions_titre": "Our Battle Doctrine",
-                "mission1_titre": "Purge of Darkness (PvE)",
-                "mission1_desc": "From intensive farming of the bloodiest dungeons to ruthless raids on the most fearsome world bosses, our absolute goal is to dominate the game's PvE content. Victory through brute force and strategy.",
+                "ordre_titre": "Hear ye, Brave Heroes!",
+                "ordre_p1": "The time for resting in the taverns of Kingshill is over. The shadow spreads across our lands once more, from the rugged Teganwall to the frozen realms of Myrdosch. The monsters of the Otherworld threaten to consume everything in darkness. Facing this growing peril, the order <strong>Ave Christus Rex</strong> sounds the gathering for the great crusade to purge this world!",
+                "ordre_p2": "Forged in the fire of battles, our brotherhood is much more than a mere alliance. It is military and spiritual, built upon the pillars of honor, loyalty, and the unquenchable thirst for victory. We seek true <strong>brothers and sisters in arms</strong>, ready to cross swords by our side and carve their names into history.",
+                "missions_titre": "Our Doctrine",
+                "mission1_titre": "Purge of Darkness",
+                "mission1_desc": "From intensive farming of dungeons to ruthless raids on world bosses, our absolute goal is to dominate PvE. Victory through brute force and strategy.",
                 "mission2_titre": "Mastery of Events",
-                "mission2_desc": "The events of Dracania are our hunting grounds. We group up methodically to claim the best rewards together. Within our ranks, mutual aid prevails: we leave no one behind.",
+                "mission2_desc": "The events of Dracania are our hunting grounds. We group up methodically to claim the best rewards. We leave no one behind.",
                 "mission3_titre": "Constant Ascension",
-                "mission3_desc": "Stagnation is our enemy. Meticulous gear optimization, the science of gems, and the daily sharing of tactical knowledge are at the core of our order's doctrine.",
-                "bastion_titre": "The Stronghold: Digital Fortress",
-                "bastion_desc": "Beyond the borders of the game, we have erected an impenetrable fortress of camaraderie. By joining our quarters on Discord, you will discover a vibrant community and a <strong>unique and immersive internal progression system</strong>!<br><br>Prove your worth in our discussions, participate in vocal battles, and climb the prestigious ranks of the guild: rise from a mere <strong>Squire</strong>, prove yourself as a <strong>Templar</strong>, until you earn the admiration of all under the supreme title of <strong>Mythic Champion</strong>.",
+                "mission3_desc": "Meticulous gear optimization, the science of gems, and the daily sharing of tactical knowledge are at the core of our order's doctrine.",
+                "bastion_titre": "Digital Fortress",
+                "bastion_desc": "By joining our quarters on Discord, you will discover a vibrant community and a <strong>unique progression system</strong>!<br><br>Prove your worth in our ranks: rise from a mere <strong>Squire</strong>, prove yourself as a <strong>Templar</strong>, until you reach the supreme title of <strong>Mythic Champion</strong>.",
                 "rejoindre_titre": "How to Swear the Oath?",
-                "rejoindre_desc": "Take up your weapon, don your finest armor, and whisper to the Grand Master in-game or directly cross the heavy gates of our fortress:",
-                "btn_discord": "Cross the Gates (Discord)",
-                "bastion_fin": "Forward, crusaders! May the fury of our blades echo throughout Dracania!"
+                "rejoindre_desc": "Take up your weapon, don your armor, and cross the gates of our fortress:",
+                "btn_discord": "Join Discord",
+                "bastion_fin": "Forward! May the fury of our blades echo throughout Dracania!"
             }
         };
 
