@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ave Christus Rex | Guilde Drakensang Online</title>
+    <meta name="description" content="Rejoignez Ave Christus Rex, la confrérie militaire et spirituelle sur Drakensang Online. Répondez à l'appel de la croisade !">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-gold: #aa771c;
+            --light-gold: #fcf6ba;
+            --bg-dark: #0a0a0a;
+            --bg-card: #151515;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        .gold-text {
+            background: linear-gradient(to bottom right, var(--light-gold), var(--primary-gold), var(--dark-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var(--primary-gold);
+            text-shadow: 0px 2px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            transition: background 0.4s ease, padding 0.4s ease;
+            z-index: 1000;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 10px 50px;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .nav-brand img {
+            height: 50px;
+            width: auto;
+            border-radius: 5px;
+        }
+
+        .nav-brand span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--primary-gold);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            background: url('image_0db6c9.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.9) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero-logo {
+            width: 150px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            font-weight: 400;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: rgba(20, 20, 20, 0.8);
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: 1px solid var(--primary-gold);
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1) inset;
+        }
+
+        .btn:hover {
+            background: var(--primary-gold);
+            color: var(--bg-dark);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 10vw;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '⚔️';
+            display: block;
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            margin-top: 15px;
+        }
+
+        /* Intro Text */
+        .intro-text {
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px auto;
+            color: var(--text-muted);
+            font-style: italic;
+            border-left: 3px solid var(--primary-gold);
+            border-right: 3px solid var(--primary-gold);
+            padding: 0 30px;
+        }
+
+        .intro-text strong {
+            color: var(--text-main);
+        }
+
+        /* Missions Grid */
+        .missions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .mission-card {
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.8), 0 0 15px rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .mission-icon {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+        }
+
+        .mission-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .mission-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Bastion Section */
+        .bastion-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            background: url('image_0db6c9.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+            padding: 60px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .bastion-content::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 15, 15, 0.92);
+            border-radius: 5px;
+        }
+
+        .bastion-text, .bastion-ranks {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .bastion-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        .ranks-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .ranks-list li {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-main);
+        }
+
+        .ranks-list li i {
+            color: var(--primary-gold);
+            width: 30px;
+            text-align: center;
+        }
+
+        .ranks-list li span {
+            font-size: 0.9rem;
+            font-family: 'Lora', serif;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        /* Join Section */
+        .join-section {
+            text-align: center;
+            background: linear-gradient(to bottom, var(--bg-dark), #0f0f0f);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .join-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-logo {
+            width: 100px;
+            margin-bottom: 20px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .footer-logo:hover { opacity: 1; }
+
+        footer p {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .bastion-content {
+                flex-direction: column;
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            nav.scrolled { padding: 15px 20px; }
+            
+            .hamburger { display: block; }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.5s;
+                border-left: 1px solid var(--border-color);
+            }
+
+            .nav-links.active { right: 0; }
+            
+            .hero h1 { font-size: 2.8rem; }
+            .hero h2 { font-size: 1.2rem; }
+            
+            section { padding: 80px 5vw; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="nav-brand">
+            <img src="image_0db768.jpg" alt="Logo Ave Christus Rex">
+            <span class="gold-text">ACR</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#ordre">L'Ordre</a></li>
+            <li><a href="#mission">Missions</a></li>
+            <li><a href="#bastion">Bastion</a></li>
+            <li><a href="#rejoindre">Rejoindre</a></li>
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <img src="image_0db768.jpg" alt="Blason Ave Christus Rex" class="hero-logo">
+            <h1 class="gold-text">Ave Christus Rex</h1>
+            <h2>L'Appel de la Croisade !</h2>
+            <a href="#rejoindre" class="btn">Répondre à l'appel</a>
+        </div>
+    </header>
+
+    <!-- Section: L'Ordre (Intro) -->
+    <section id="ordre">
+        <div class="reveal">
+            <h2 class="section-title gold-text">Oyez, braves héros de Dracania !</h2>
+            <p class="intro-text">
+                L'heure n'est plus au repos dans les tavernes de Kingshill. L'ombre s'étend à nouveau sur nos terres, et les monstres de l'Altéromonde menacent de tout engloutir. Face à ce péril, l'ordre <strong>Ave Christus Rex</strong> sonne le rassemblement de la grande croisade !<br><br>
+                Nous sommes une confrérie militaire et spirituelle, bâtie sur l'honneur, la loyauté et la soif de vaincre. Nous ne cherchons pas de simples joueurs, mais de véritables <strong>frères et sœurs d'armes</strong> prêts à croiser le fer à nos côtés.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section: Missions -->
+    <section id="mission">
+        <h2 class="section-title gold-text reveal">Notre Mission sur Dracania</h2>
+        <div class="missions-grid">
+            
+            <div class="mission-card reveal">
+                <i class="fas fa-skull-crossbones mission-icon"></i>
+                <h3>Purge des Ténèbres</h3>
+                <p>Du farm de donjons sanglants aux raids sur les boss les plus redoutables, notre but absolu est de dominer le contenu PvE du jeu.</p>
+            </div>
+
+            <div class="mission-card reveal" style="transition-delay: 0.2s;">
+                <i class="fas fa-gem mission-icon"></i>
+                <h3>Maîtrise des Événements</h3>
+                <p>Nous nous regroupons pour chaque événement majeur afin de récupérer les meilleures récompenses ensemble, sans jamais laisser personne derrière.</p>
+            </div>
+
+            <div class="mission-card reveal" style="transition-delay: 0.4s;">
+                <i class="fas fa-khanda mission-icon"></i>
+                <h3>Progression Constante</h3>
+                <p>L'optimisation pointue de l'équipement et le partage de connaissances stratégiques sont au cœur de l'évolution de notre ordre.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section: Bastion -->
+    <section id="bastion">
+        <h2 class="section-title gold-text reveal">Notre Bastion</h2>
+        <div class="bastion-content reveal">
+            <div class="bastion-text">
+                <p>Nous avons érigé une forteresse impénétrable et d'un grand prestige pour abriter nos troupes. En rejoignant nos quartiers sur Discord, vous découvrirez un <strong>système de progression interne unique</strong> !</p>
+                <p>Prouvez votre valeur dans nos discussions et sur le champ de bataille pour gagner de l'XP et gravir les échelons sacrés de la guilde.</p>
+            </div>
+            
+            <div class="bastion-ranks">
+                <h3 class="gold-text" style="font-size: 1.8rem; margin-bottom: 15px;">Les Rangs de l'Ordre</h3>
+                <ul class="ranks-list">
+                    <li><i class="fas fa-shield-alt"></i> Écuyer <span>(Néophyte)</span></li>
+                    <li><i class="fas fa-cross"></i> Templier <span>(Combattant Éprouvé)</span></li>
+                    <li><i class="fas fa-crown"></i> Champion Mythique <span>(Titre Suprême)</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Rejoindre -->
+    <section id="rejoindre" class="join-section">
+        <div class="reveal">
+            <h2 class="section-title gold-text">Rejoindre l'Ordre</h2>
+            <p>Prenez votre arme, revêtez votre plus belle armure et répondez à l'appel. Murmurez au Grand Maître en jeu ou franchissez directement les portes de notre forteresse.</p>
+            <a href="https://discord.gg/JDG9WStHJ8" target="_blank" class="btn"><i class="fab fa-discord"></i> Franchir les Portes (Discord)</a>
+            <p style="margin-top: 30px; font-style: italic; color: var(--primary-gold);">En avant ! Que la fureur de nos lames résonne dans tout Dracania !</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <img src="image_0db768.jpg" alt="Logo Footer" class="footer-logo">
+        <p class="cinzel gold-text" style="font-size: 1.2rem; margin-bottom: 10px;">Ave Christus Rex</p>
+        <p>&copy; 2026 Guilde Ave Christus Rex - Drakensang Online. Tous droits réservés.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on load
+    </script>
+</body>
+</html>
